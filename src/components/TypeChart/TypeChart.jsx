@@ -37,8 +37,8 @@ function TypeChart(){
         return "";
     }
     
-    function handleMouseHover(attacker, defender, value){
-        setHoverCell({attacker, defender, value});
+    function handleMouseHover(rowHeaderAttacker, defender, value){
+        setHoverCell({rowHeaderAttacker, defender, value});
     }
     
     function handleMouseLeave(){
@@ -51,7 +51,7 @@ function TypeChart(){
             <>
                 <h3>Interaction</h3>
                 <p>
-                    <strong>{hoverCell.attacker}</strong> vs <strong>{hoverCell.defender}</strong>
+                    <strong>{hoverCell.rowHeaderAttacker}</strong> vs <strong>{hoverCell.defender}</strong>
                 </p>
                 <p>
                     Effectiveness: <strong>{effectivenessDisplay(hoverCell.value)}</strong>
@@ -67,18 +67,21 @@ function TypeChart(){
 
             <article className="type-chart">
                 <div className="header"></div>
-                {types.map((types, index) => (
-                    <div key={index} className="header type-header">{types}</div>
+                {/* REMEMBER: the div above is the empty grid between the rows and collumns headers */}
+
+                {types.map((columnHeaderDefender, index) => (
+                    <div key={index} className="header type-header">{columnHeaderDefender}</div>
                 ))}
 
-                {types.map((attacker, row) => (
+                {types.map((rowHeaderAttacker, row) => (
                     <React.Fragment key={row}>
-                        <div className="header type-header">{attacker}</div>
+                        <div className="header type-header">{rowHeaderAttacker}</div>
+                        
                         {types.map((defender, column) => (
                             <div
                                 key={column}
                                 className="cell"
-                                onMouseEnter={() => handleMouseHover(attacker, defender, effectiveness[row][column])}
+                                onMouseEnter={() => handleMouseHover(rowHeaderAttacker, defender, effectiveness[row][column])}
                                 onMouseLeave={handleMouseLeave}
                             >{effectivenessDisplay(effectiveness[row][column])}</div>
                         ))}
