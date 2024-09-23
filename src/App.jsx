@@ -1,4 +1,3 @@
-import './App.css'
 import TypeChart from './components/TypeChart/TypeChart';
 
 function App() {

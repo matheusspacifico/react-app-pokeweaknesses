@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./TypeChart.css";
 
 const types = [
@@ -66,11 +66,11 @@ function TypeChart(){
         <section className="type-chart-container">
 
             <article className="type-chart">
-                <div className="header"></div>
+                <div></div>
                 {/* the div above is the empty grid between the rows and columns headers */}
 
                 {types.map((columnHeaderDefender, index) => (
-                    <div key={index} className="header type-header">
+                    <div key={index} className="type-header defender-header">
                         <img
                             className="type-icon"
                             src={`../public/${columnHeaderDefender}.png`}
@@ -81,7 +81,7 @@ function TypeChart(){
 
                 {types.map((rowHeaderAttacker, row) => (
                     <div key={row} className="type-row">
-                        <div className="header type-header">
+                        <div className="type-header attacker-header">
                             <img
                                 className="type-icon"
                                 src={`../public/${rowHeaderAttacker}.png`}
