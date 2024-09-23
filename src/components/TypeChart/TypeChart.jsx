@@ -68,7 +68,7 @@ function TypeChart(){
             <article className="type-chart">
                 <div className="header"></div>
                 {types.map((types, index) => (
-                    <div key={index} className="header type-header"></div>
+                    <div key={index} className="header type-header">{types}</div>
                 ))}
 
                 {types.map((attacker, row) => (
