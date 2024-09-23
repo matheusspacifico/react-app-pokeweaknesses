@@ -67,15 +67,27 @@ function TypeChart(){
 
             <article className="type-chart">
                 <div className="header"></div>
-                {/* REMEMBER: the div above is the empty grid between the rows and collumns headers */}
+                {/* the div above is the empty grid between the rows and columns headers */}
 
                 {types.map((columnHeaderDefender, index) => (
-                    <div key={index} className="header type-header">{columnHeaderDefender}</div>
+                    <div key={index} className="header type-header">
+                        <img
+                            className="type-icon"
+                            src={`../public/${columnHeaderDefender}.png`}
+                            alt={`${columnHeaderDefender} type defender`}
+                        ></img>
+                    </div>
                 ))}
 
                 {types.map((rowHeaderAttacker, row) => (
-                    <React.Fragment key={row}>
-                        <div className="header type-header">{rowHeaderAttacker}</div>
+                    <div key={row} className="type-row">
+                        <div className="header type-header">
+                            <img
+                                className="type-icon"
+                                src={`../public/${rowHeaderAttacker}.png`}
+                                alt={`${rowHeaderAttacker} type attacker`}
+                            ></img>
+                        </div>
                         
                         {types.map((defender, column) => (
                             <div
@@ -85,7 +97,7 @@ function TypeChart(){
                                 onMouseLeave={handleMouseLeave}
                             >{effectivenessDisplay(effectiveness[row][column])}</div>
                         ))}
-                    </React.Fragment>
+                    </div>
                 ))}
             </article>
 
