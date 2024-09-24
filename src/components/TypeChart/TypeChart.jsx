@@ -83,7 +83,7 @@ function TypeChart(){
             <>
                 <h3>Interaction</h3>
                 <p>
-                    <img src={`./static/${hoverCell.rowHeaderAttacker}.png`} alt={`${hoverCell.rowHeaderAttacker} type defender`}></img> vs <img src={`.static/${hoverCell.defender}.png`} alt={`${hoverCell.defender} type defender`}></img>
+                    <img src={`./static/${hoverCell.rowHeaderAttacker}.png`} alt={`${hoverCell.rowHeaderAttacker} type defender`}></img> vs <img src={`./static/${hoverCell.defender}.png`} alt={`${hoverCell.defender} type defender`}></img>
                 </p>
                 <p>
                     {getEffectivenessText(hoverCell.value)}
