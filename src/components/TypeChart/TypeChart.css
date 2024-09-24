@@ -6,6 +6,8 @@
 .type-chart {
     display: grid;
     grid-template-columns: repeat(19, 50px);
+    /* transform: scale(0.9);
+    transform-origin: top left; */
 }
 
 .type-header {
@@ -38,14 +40,30 @@
 }
 
 .cell:hover {
-    background-color: #0f5323;
     font-weight: bold;
+}
+
+.cell-green:hover {
+    background-color: #0f5323;
+}
+
+.cell-red:hover {
+    background-color: #8e1519;
+}
+
+.cell-immune:hover {
+    background-color: black;
+}
+
+.highlight {
+    background-color: #21262d;
 }
 
 .info-chart {
     margin-left: 20px;
     width: 200px;
     color: var(--text-color);
+    align-self: center;
 }
 
 .type-row {

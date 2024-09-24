@@ -29,6 +29,8 @@ const effectiveness = [
 
 function TypeChart(){    
     const [hoverCell, setHoverCell] = useState(null);
+    const [hoverRow, setHoverRow] = useState(null);
+    const [hoverColumn, setHoverColumn] = useState(null);
 
     function effectivenessDisplay(value){
         if (value === 0) return "0";
@@ -37,12 +39,42 @@ function TypeChart(){
         return "";
     }
     
-    function handleMouseHover(rowHeaderAttacker, defender, value){
+    function getEffectivenessText(value){
+        if (value === 0) {
+            return <strong>Immune.</strong>;
+        }
+        if (value === 0.5) {
+            return <strong>Not very effective...</strong>;
+        }
+        if (value === 2) {
+            return <strong>Very effective!</strong>;
+        }
+        return;
+    }
+
+    function getEffectivenessColor(value){
+        if (value === 0) {
+            return "cell-immune";
+        }
+        if (value === 0.5) {
+            return "cell-red";
+        }
+        if (value === 2) {
+            return "cell-green";
+        }
+        return "";
+    }
+
+    function handleMouseHover(rowHeaderAttacker, defender, value, row, column){
         setHoverCell({rowHeaderAttacker, defender, value});
+        setHoverRow(row);
+        setHoverColumn(column);
     }
     
     function handleMouseLeave(){
         setHoverCell(null);
+        setHoverRow(null);
+        setHoverColumn(null);
     }
 
     let infoPanel;
@@ -54,7 +86,7 @@ function TypeChart(){
                     <img src={`../public/${hoverCell.rowHeaderAttacker}.png`} alt={`${hoverCell.rowHeaderAttacker} type defender`}></img> vs <img src={`../public/${hoverCell.defender}.png`} alt={`${hoverCell.defender} type defender`}></img>
                 </p>
                 <p>
-                    Effectiveness: <strong>{effectivenessDisplay(hoverCell.value)}</strong>
+                    {getEffectivenessText(hoverCell.value)}
                 </p>
             </>
         );
@@ -92,8 +124,11 @@ function TypeChart(){
                         {types.map((defender, column) => (
                             <div
                                 key={column}
-                                className="cell"
-                                onMouseEnter={() => handleMouseHover(rowHeaderAttacker, defender, effectiveness[row][column])}
+                                className={`cell 
+                                    ${hoverRow === row || hoverColumn === column ? "highlight" : ""}
+                                    ${getEffectivenessColor(effectiveness[row][column])}
+                                    `}
+                                onMouseEnter={() => handleMouseHover(rowHeaderAttacker, defender, effectiveness[row][column], row, column)}
                                 onMouseLeave={handleMouseLeave}
                             >{effectivenessDisplay(effectiveness[row][column])}</div>
                         ))}
